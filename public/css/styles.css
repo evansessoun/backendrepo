@@ -3,4 +3,122 @@
 *:before,
 *:after {
   box-sizing: border-box;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+#upgrade-imgs{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.siteName a{
+  text-decoration: none;
+  font-size: 25px;
+  font-weight: bold;
+  color: rgb(15, 16, 17);
+}
+#top-header{
+  display: flex;
+  justify-content: space-between;
+}
+
+#tools a{
+  text-decoration: none;
+  color: rgb(43, 83, 143);
+}
+nav{
+  width: 100%;
+  margin:0;
+  background-color: rgb(20, 21, 21);
+}
+  
+nav ul{
+  display: flex;
+  list-style: none;
+  justify-content: space-between;
+  padding: 10px;
+}
+nav li{
+  display: inline;
+  color:white;
+}
+#hero{
+  position:relative;
+   margin-bottom: 80px;
+}
+#hero img{
+  width: 100%;
+}
+#hero-text{
+  line-height: 0.7;
+  padding: 10px;
+  top:20px;
+  left:20px;
+  width: 35%;
+  min-width: 100px;
+  position:absolute;
+  z-index: 1;
+  background-color: rgba(251, 251, 252, 0.737);
+  font-size: clamp(0.5rem,1.5vw, 1rem);
+}
+
+#hero-text img{
+  height: auto;
+  width: 60%;
+}
+#upgrade-imgs div div{
+  display: grid;
+  background-color: rgb(44, 123, 213);
+  height: 100px;
+  place-items: center;
+  margin: 10px;
+  border-radius: 10px;
+}
+#upgrade-imgs div p{
+  text-align: center;
+  text-decoration: underline;
+}
+footer{
+  background-color: rgb(199, 199, 200);
+  height: 50px;
+  text-align: center;
+  padding:5px;
+}
+
+@media screen and (min-width: 700px) {
+  nav li{
+    font-size: 1.5rem;
+  }
+  #review-details li{
+    font-size: 1.2rem;
+    line-height: 2rem;
+  }
+  #details{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  #reviews{
+    grid-column: 2/3;
+    
+  }
+  #reviews li{
+    line-height: 2rem;
+  }
+  #upgrades{
+    grid-column: 1/2;
+    grid-row: 1/2;
+  }
+
+  body{
+    background-image: url("../images/site/small_check.jpg");
+    display:grid;
+    place-items: center;
+    
+  }
+  
+  #wrapper{
+    background-color: white;
+    max-width: 1000px;
+    border: solid rgb(22, 123, 218) 12px;
+    border-radius: 20px;
+    padding:20px;   
+  }
 }
