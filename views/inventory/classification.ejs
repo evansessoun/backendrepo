@@ -1,0 +1,11 @@
+<%#Building the head of the classificationById page%>
+<% if (title) { %>
+<h1 id="titled"><%= title %></h1>
+<% } else {
+    res.redirect('/')
+} %>
+
+<%# message() %>
+
+<%#Displaying the grid view%>
+<%- grid %>

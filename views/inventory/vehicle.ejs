@@ -1,0 +1,11 @@
+<%# Building the head of the vehicle detail page %>
+<% if (title) {%>
+<h1 id="titled"><%= title %></h1>
+<%}else {
+    res.redirect('/')
+}%>
+
+<%# message() %>
+
+<%# Build the Vehicle detail page%>
+<%- detail_page %>

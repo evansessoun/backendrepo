@@ -1,0 +1,9 @@
+<%#Building the error page%>
+<% if (title) { %>
+<h1 id="titled"><%= title %></h1>
+<% } else {
+    res.redirect('/')
+} %>
+
+<%#Displaying the error message%>
+<%= message %>

@@ -15,11 +15,18 @@
   font-weight: bold;
   color: rgb(15, 16, 17);
 }
-#top-header{
+#top-header, #inv-display li{
   display: flex;
   justify-content: space-between;
 }
-
+#vehicle-page{
+    display:grid;
+    place-items: center;
+}
+#vehicle-page img{
+  width: 70%;
+  height: auto;
+}
 #tools a{
   text-decoration: none;
   color: rgb(43, 83, 143);
@@ -36,13 +43,44 @@ nav ul{
   justify-content: space-between;
   padding: 10px;
 }
-nav li{
+nav ul a, #inv-display li{
   display: inline;
   color:white;
+  text-decoration: none;
 }
+main{
+  display:grid;
+  place-items: center;
+}
+.namePrice h2, .namePrice span{
+  display: flex;
+  justify-content: center;
+  font-size: 14px;
+}
+.namePrice a{
+  text-decoration: none;
+}
+
+.namePrice span{
+  color:black;
+}
+
+nav ul a:hover{
+  color:black;
+  background-color: white;
+}
+#inv-display img{
+  height: 125px;
+  width: auto;
+  
+}
+#titled{
+  text-align: center;
+}
+
 #hero{
   position:relative;
-   margin-bottom: 80px;
+  margin-bottom: 80px;
 }
 #hero img{
   width: 100%;
@@ -76,11 +114,18 @@ nav li{
   text-align: center;
   text-decoration: underline;
 }
+
+
+#vehicle-info span{
+  font-weight: bold;
+}
 footer{
   background-color: rgb(199, 199, 200);
   height: 50px;
-  text-align: center;
+  
   padding:5px;
+  margin-top: 20px;
+  margin-bottom: 15px;
 }
 
 @media screen and (min-width: 700px) {
@@ -105,6 +150,21 @@ footer{
   #upgrades{
     grid-column: 1/2;
     grid-row: 1/2;
+  }
+
+  #inv-display{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  #vehicle-page{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 20px;
+    place-items: center;
+  }
+  #vehicle-page img{
+    width: 60%;
+    height: auto;
   }
 
   body{
