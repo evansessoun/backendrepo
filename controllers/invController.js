@@ -1,6 +1,7 @@
 const invModel = require("../models/inventory-model")
 const utilities = require("../utilities/")
 
+
 const invCont = {}
 
 /*
@@ -30,6 +31,74 @@ invCont.buildVehicleDetail = async function(req, res, next) {
         nav,
         detail_page,
     })
+}
+
+invCont.buildManagementPage = async function(req, res, next) {
+    const management_page = await utilities.buildManagementView()
+    let nav = await utilities.getNav()
+    res.render("inventory/management", {
+        title: "Vehicle Management",
+        nav,
+        management_page,
+        errors:null
+    })
+}
+
+invCont.buildNewClassificationPage = async function(req,res, next) {
+    const newClassPage = await utilities.buildNewClassification()
+    let nav = await utilities.getNav()
+    res.render("inventory/add-classification", {
+        title: "Add New Classification",
+        nav,
+        newClassPage,
+        scripts: '<script src="/js/addClassification.js"></script>',
+        errors:null
+    })
+   
+
+}
+
+invCont.updateClassificationPage = async function(req,res, next) {
+    const {classification_name} = req.body
+    try{
+        await invModel.setClassification(classification_name)
+    } catch (error){
+        req.flash("notice", 
+            "Sorry, there was an error updating vehicle classification.")
+    }
+    invCont.buildNewClassificationPage(req, res, next)
+
+}
+
+invCont.buildInventoryPage = async function(req,res, next) {
+    let data = res.locals
+    console.log(data)
+    const newInvPage = await utilities.buildNewInventory(data)
+    let nav = await utilities.getNav()
+    res.render("inventory/add-inventory", {
+        title: "Add New Inventory",
+        nav,
+        newInvPage,
+        errors:null
+    })
+
+}
+
+invCont.updateInventoryPage = async function(req,res, next) {
+    const {classification_id, inv_make, inv_model, inv_description, inv_image, inv_thumbnail, inv_price, inv_year, inv_miles, inv_color} = req.body
+    try{
+        await invModel.setInventory(classification_id, inv_make, inv_model, inv_description, inv_image, inv_thumbnail, inv_price, inv_year, inv_miles, inv_color)
+
+        req.flash(
+            "notice",
+            `Congratulations, you\'ve added ${inv_make} ${inv_model} to inventory `
+        )
+    } catch (error){
+        req.flash("notice", 
+            "Sorry, there was an error updating vehicle inventory.")
+    }
+    invCont.buildInventoryPage(req, res, next)
+
 }
 
 invCont.buildErrorPage = async function(req, res,next) {

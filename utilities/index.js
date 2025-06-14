@@ -90,6 +90,102 @@ Util.buildError = async function(err) {
     return error_page
 }
 
+
+Util.buildManagementView = function() {
+    let management_page = '<div id="management-page">'  
+    management_page += '<a href="/inv/addClassification"> Add New Classification</a>'
+    management_page += '<br>'
+    management_page += '<a href="/inv/addVehicle"> Add New Vehicle</a>'
+    management_page += ' '
+    management_page += '</div>'
+
+    return management_page
+}
+
+Util.buildNewClassification = function() {
+    let newClassPage = '<div id="new-classification">'  
+    newClassPage += '<p><i>FIELD IS REQUIRED</i></p>'
+    newClassPage += '<br>'
+    newClassPage += '<form class="classification-form" action="/inv/addedClassification" method="post">'
+    newClassPage += '<label for="classification_name">Classification Name</label>'
+    newClassPage += '<br>'
+    newClassPage += '<span><i>NAME MUST BE ALPHABETIC CHARACTERS ONLY</i></span>'
+    newClassPage += '<br>'
+    newClassPage += '<input type="text" name="classification_name" required pattern="^[a-zA-Z]+$">'
+    newClassPage += '<br>'
+    newClassPage += '<button type="submit" id="submitBtn">Add Classification</button>'
+    newClassPage += '<br>'
+    newClassPage += '</form>'
+    newClassPage += '</div>'
+
+    return newClassPage
+}
+
+/////////////////////////////////////////////
+Util.buildClassificationList = async function (classification_id = null) {
+    let data = await invModel.getClassifications()
+    let classificationList =
+      '<select name="classification_id" id="classificationList" required>'
+    classificationList += "<option " + `value=${data.classification_id || ''}` +'>' + "Choose a Classification</option>"
+    data.rows.forEach((row) => {
+      classificationList += '<option value="' + row.classification_id + '"'
+      if (
+        classification_id != null &&
+        row.classification_id == classification_id
+      ) {
+        classificationList += " selected "
+      }
+      classificationList += ">" + row.classification_name + "</option>"
+    })
+    classificationList += "</select>"
+    return classificationList
+  }
+
+Util.buildNewInventory = async function(data = {}) {
+    let classificationList = await Util.buildClassificationList();
+    let newInvPage = '<div id="new-inventory">'  
+    newInvPage += '<p><i>ALL FIELDS ARE REQUIRED</i></p>'
+    newInvPage += '<br>'
+    newInvPage += '<form class="inventory-form" action="/inv/addVehicle" method="post">'
+    newInvPage += '<br>'
+    newInvPage += '<label for="classificationList">Classification</label>'
+    newInvPage += classificationList
+    newInvPage += '<label for="inv_make">Make</label>'
+    newInvPage += '<input type="text" name="inv_make" required pattern="^[a-zA-Z]+$" placeholder="min of 3 characters" minlength="3" '+  `value=${data.inv_make || ''}` +'>'
+    newInvPage += '<br>'
+    newInvPage += '<label for="inv_model">Model</label>'
+    newInvPage += '<input type="text" name="inv_model" required pattern="^[a-zA-Z]+$" placeholder="min of 3 characters" minlength="3"'+ `value=${data.inv_model || ''}` +'>'
+    newInvPage += '<br>'
+    newInvPage += '<label for="inv_description">Description</label>'
+    newInvPage += '<textarea name="inv_description" required rows="5" cols="50" '+ `value=${data.inv_description || ''}` +'>'+ '</textarea>'
+    newInvPage += '<br>'
+    newInvPage += '<label for="inv_image">Image Path</label>'
+    newInvPage += '<input type="text" name="inv_image" required '+ `value=${data.inv_image || ''}` +'>'
+    newInvPage += '<br>'
+    newInvPage += '<label for="inv_thumbnail">Thumbnail Path</label>'
+    newInvPage += '<input type="text" name="inv_thumbnail" required '+ `value=${data.inv_thumbnail || ''}` +'>'
+    newInvPage += '<br>'
+    newInvPage += '<label for="inv_price">Price</label>'
+    newInvPage += '<input type="number" name="inv_price" required '+ `value=${data.inv_price || ''}` +'>'
+    newInvPage += '<br>'
+    newInvPage += '<label for="inv_year">Year</label>'
+    newInvPage += '<input type="number" name="inv_year" step="1" required placeholder="4-digit year" min="1000" max="9999" '+ `value=${data.inv_year || ''}` +'>'
+    newInvPage += '<br>'
+    newInvPage += '<label for="inv_miles">Miles</label>'
+    newInvPage += '<input type="number" name="inv_miles" step="1" required placeholder="digits only" '+ `value=${data.inv_miles || ''}` +'>'
+    newInvPage += '<label for="inv_color">Color</label>'
+    newInvPage += '<input type="text" name="inv_color"  required pattern="^[a-zA-Z]+$" '+ `value=${data.inv_color || ''}` +'>'
+
+    newInvPage += '<br>'
+    newInvPage += '<button type="submit" id="submitBtn">Add Classification</button>'
+    newInvPage += '<br>'
+    newInvPage += '</form>'
+    newInvPage += '</div>'
+
+    return newInvPage
+}
+
+
 /*
 *Middlewae fro handling Errors
 *Wrap other function in this for 

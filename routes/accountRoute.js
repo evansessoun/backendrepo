@@ -16,6 +16,7 @@ const regValidate = require("../utilities/account-validation")
 router.get("/login", utilities.handleErrors(accountController.buildLogin))
 router.get("/register", utilities.handleErrors(accountController.buildRegister))
 
+
 /* Process Registration
 * Unit 4, Process registration activity
 */

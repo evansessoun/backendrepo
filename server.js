@@ -55,12 +55,14 @@ app.set("layout", "./layouts/layout") // not at views root
 /* ***********************
  * Routes
  *************************/
-app.use(static)
+//app.use(static)
+app.use(express.static("public"));
 
 // Index route
 app.get("/", utilities.handleErrors( baseController.buildHome))
 app.use("/inv", inventoryRoute)
 
+app.get("/", utilities.handleErrors())
 // Account routes - Unit 4 Activity
 app.use("/account", accountRoute)
 

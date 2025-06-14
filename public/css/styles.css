@@ -80,6 +80,11 @@ nav ul a:hover{
 #titled{
   text-align: center;
 }
+#management-page{
+  display: grid;
+  width: 100%;
+  place-items:left;
+}
 
 #hero{
   position:relative;
@@ -112,7 +117,7 @@ nav ul a:hover{
 }
 
 
-.loginForm input, .register-page input{
+.loginForm input, .register-page input, .classification-form input, .inventory-form input, .inventory-form select{
   height: 30px;
   width: 95%;
   border-radius: 5px;
@@ -120,7 +125,8 @@ nav ul a:hover{
   border: solid 2px rgba(0, 0, 0, 0.89);
 }
 
-#register-btn, #loginBtn{
+.classification-form button,
+#register-btn, #loginBtn, #submitBtn {
   width: 100px;
   height: 40px;
   font-weight: bold;
@@ -132,6 +138,10 @@ nav ul a:hover{
   background-color: rgb(13, 26, 47);
   color:antiquewhite;
   border-color: antiquewhite;
+}
+
+.classification-form button, #submitBtn{
+  width: fit-content;
 }
 
 .loginForm a{
@@ -168,6 +178,14 @@ nav ul a:hover{
   text-decoration: underline;
 }
 
+#new-classification, #new-inventory, .classification-form, .inventory-form{
+  display: grid;
+  background-color: rgb(44, 123, 213) ;
+  padding: 20px;
+  border: 2px solid rgb(250, 249, 249);
+  border-radius: 20px;
+  min-width: 90%;
+}
 
 
 input:required:invalid, input:focus:invalid{
@@ -192,7 +210,7 @@ footer{
 
 @media screen and (min-width: 700px) {
   nav li{
-    font-size: 1.5rem;
+    font-size: 1rem;
   }
   #review-details li{
     font-size: 1.2rem;
