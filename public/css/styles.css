@@ -83,7 +83,7 @@ nav ul a:hover{
 #management-page{
   display: grid;
   width: 100%;
-  place-items:left;
+  place-items:start;
 }
 
 #hero{

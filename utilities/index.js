@@ -111,7 +111,7 @@ Util.buildNewClassification = function() {
     newClassPage += '<br>'
     newClassPage += '<span><i>NAME MUST BE ALPHABETIC CHARACTERS ONLY</i></span>'
     newClassPage += '<br>'
-    newClassPage += '<input type="text" name="classification_name" required pattern="^[a-zA-Z]+$">'
+    newClassPage += '<input type="text" name="classification_name" id="classification_name" required pattern="^[a-zA-Z]+$">'
     newClassPage += '<br>'
     newClassPage += '<button type="submit" id="submitBtn">Add Classification</button>'
     newClassPage += '<br>'
@@ -126,7 +126,7 @@ Util.buildClassificationList = async function (classification_id = null) {
     let data = await invModel.getClassifications()
     let classificationList =
       '<select name="classification_id" id="classificationList" required>'
-    classificationList += "<option " + `value=${data.classification_id || ''}` +'>' + "Choose a Classification</option>"
+    classificationList += "<option " + `value="${data.classification_id || ''}"` +'>' + "Choose a Classification</option>"
     data.rows.forEach((row) => {
       classificationList += '<option value="' + row.classification_id + '"'
       if (
@@ -151,30 +151,30 @@ Util.buildNewInventory = async function(data = {}) {
     newInvPage += '<label for="classificationList">Classification</label>'
     newInvPage += classificationList
     newInvPage += '<label for="inv_make">Make</label>'
-    newInvPage += '<input type="text" name="inv_make" required pattern="^[a-zA-Z]+$" placeholder="min of 3 characters" minlength="3" '+  `value=${data.inv_make || ''}` +'>'
+    newInvPage += '<input type="text" name="inv_make" id="inv_make" required pattern="^[a-zA-Z]+$" placeholder="min of 3 characters" minlength="3" '+  `value="${data.inv_make || ''}"` +'>'
     newInvPage += '<br>'
     newInvPage += '<label for="inv_model">Model</label>'
-    newInvPage += '<input type="text" name="inv_model" required pattern="^[a-zA-Z]+$" placeholder="min of 3 characters" minlength="3"'+ `value=${data.inv_model || ''}` +'>'
+    newInvPage += '<input type="text" name="inv_model" id="inv_model" required pattern="^[a-zA-Z]+$" placeholder="min of 3 characters" minlength="3" '+ `value="${data.inv_model || ''}"` +'>'
     newInvPage += '<br>'
     newInvPage += '<label for="inv_description">Description</label>'
-    newInvPage += '<textarea name="inv_description" required rows="5" cols="50" '+ `value=${data.inv_description || ''}` +'>'+ '</textarea>'
+    newInvPage += '<textarea name="inv_description" id="inv_description" required rows="5" cols="50" '+'>' + `${data.inv_description || ''}` + '</textarea>'
     newInvPage += '<br>'
     newInvPage += '<label for="inv_image">Image Path</label>'
-    newInvPage += '<input type="text" name="inv_image" required '+ `value=${data.inv_image || ''}` +'>'
+    newInvPage += '<input type="text" name="inv_image" id="inv_image" required '+ `value="${data.inv_image || ''}"` +'>'
     newInvPage += '<br>'
     newInvPage += '<label for="inv_thumbnail">Thumbnail Path</label>'
-    newInvPage += '<input type="text" name="inv_thumbnail" required '+ `value=${data.inv_thumbnail || ''}` +'>'
+    newInvPage += '<input type="text" name="inv_thumbnail" id="inv_thumbnail" required '+ `value="${data.inv_thumbnail || ''}"` +'>'
     newInvPage += '<br>'
     newInvPage += '<label for="inv_price">Price</label>'
-    newInvPage += '<input type="number" name="inv_price" required '+ `value=${data.inv_price || ''}` +'>'
+    newInvPage += '<input type="number" name="inv_price" id="inv_price" required '+ `value="${data.inv_price || ''}"` +'>'
     newInvPage += '<br>'
     newInvPage += '<label for="inv_year">Year</label>'
-    newInvPage += '<input type="number" name="inv_year" step="1" required placeholder="4-digit year" min="1000" max="9999" '+ `value=${data.inv_year || ''}` +'>'
+    newInvPage += '<input type="number" name="inv_year" id="inv_year" step="1" required placeholder="4-digit year" min="1000" max="9999" '+ `value="${data.inv_year || ''}"` +'>'
     newInvPage += '<br>'
     newInvPage += '<label for="inv_miles">Miles</label>'
-    newInvPage += '<input type="number" name="inv_miles" step="1" required placeholder="digits only" '+ `value=${data.inv_miles || ''}` +'>'
+    newInvPage += '<input type="number" name="inv_miles" id="inv_miles" step="1" required placeholder="digits only" '+ `value="${data.inv_miles || ''}"` +'>'
     newInvPage += '<label for="inv_color">Color</label>'
-    newInvPage += '<input type="text" name="inv_color"  required pattern="^[a-zA-Z]+$" '+ `value=${data.inv_color || ''}` +'>'
+    newInvPage += '<input type="text" name="inv_color" id="inv_color"  required pattern="^[a-zA-Z]+$" '+ `value="${data.inv_color || ''}"` +'>'
 
     newInvPage += '<br>'
     newInvPage += '<button type="submit" id="submitBtn">Add Classification</button>'
